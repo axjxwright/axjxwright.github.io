@@ -4,10 +4,26 @@
 <head>
     <meta charset="utf-8">
     <title>Clem dots thingy</title>
+    <style>
+    	.wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 50%;
+    font-size: 32px;
+    padding: 15px;
+}
+</style>
 </head>
 
 <body>
-	<audio id="audio" src="03_Nero.mp3"></audio>
+	<audio id="audio" autoplay="false" src="src/03_Nero.wav"></audio>
+
+<div id="wrapper" class="wrapper">
+    <button id="startBtn" class="button">Start</button>
+</div>
 <script src="bundle.js"></script></body>
 
 </html>
