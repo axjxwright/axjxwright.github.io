@@ -1,0 +1,40 @@
+body
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+video
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.outer {
+    position:absolute;
+    width:100%; height:100%;
+    -webkit-transform:translate3d(0,0,0);
+   
+}
+.inner {
+    position:absolute; z-index:10;
+    box-sizing:border-box; width:100%; padding:10px;
+    background-color:rgba(0,0,0,0.5); color:#fff;
+    left:0; right:0; bottom:0;
+    -webkit-transform: translateY(50%);
+    transform: translateY(100%);
+    transition: transform 300ms;
+    transition: -webkit-transform 300ms;
+    padding: 30px;
+}
+.outer .inner.selected {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+}
+
+h1 { font-size: 32px; font-family: "HaasGrotDisp75Bold", Georgia; }
+h2 { font-size: 18px; font-family: "HaasGrotDisp35Thin", Georgia; }

@@ -1,0 +1,12 @@
+/* Webfont: HaasGrotDisp-15XXThin */@font-face {
+    font-family: 'HaasGrotDisp15XXThin';
+    src: url('HaasGrotDisp-15XXThin.eot'); /* IE9 Compat Modes */
+    src: url('HaasGrotDisp-15XXThin.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('HaasGrotDisp-15XXThin.woff') format('woff'), /* Modern Browsers */
+         url('HaasGrotDisp-15XXThin.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('HaasGrotDisp-15XXThin.svg#HaasGrotDisp-15XXThin') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

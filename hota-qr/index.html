@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>QR Scanner Test</title>
+    <link rel="stylesheet" href="./css/style.css"></link>
+    <link rel="stylesheet" href="./style/HaasGrotDisp-75Bold.css"/>
+<link rel="stylesheet" href="./style/HaasGrotDisp-35Thin.css"/>
+</head>
+<body>
+    <video id="qr-video"></video>
+
+    <div class="outer">
+        <div id="111" class="inner">
+
+            <h1>Girl with a Pearl Earring (1665)</h1>
+            <h2>Johannes Vermeer’s 1665 study of a young woman is startlingly real and startlingly modern, almost as if it were a photograph. This gets into the debate over whether or not Vermeer employed a pre-photographic device called a camera obscura to create the image.</h2></div>
+    </div>
+
+    <div class="outer">
+        <div id="222" class="inner">
+
+            <h1>The Starry Night, (1889)</h1>
+            <h2>Vincent Van Gogh’s most popular painting, The Starry Night was created by Van Gogh at the asylum in Saint-Rémy, where he’d committed himself in 1889. Indeed, The Starry Night seems to reflect his turbulent state of mind at the time, as the night sky comes alive with swirls and orbs of frenetically applied brush marks springing from the yin and yang of his personal demons and awe of nature.</h2></div>
+    </div>
+
+
+    <div class="outer">
+        <div id="333" class="inner">
+
+            <h1>The Kiss (1907–1908)</h1>
+            <h2>Opulently gilded and extravagantly patterned, The Kiss, Gustav Klimt’s fin-de-siècle portrayal of intimacy, is a mix of Symbolism and Vienna Jugendstil, the Austrian variant of Art Nouveau. Klimt depicts his subjects as mythical figures made modern by luxuriant surfaces of up-to-the moment graphic motifs.</h2></div>
+    </div>
+
+<script type="module">
+    import QrScanner from "./js/qr-scanner.min.js";
+    QrScanner.WORKER_PATH = './js/qr-scanner-worker.min.js';
+
+    const video = document.getElementById('qr-video');
+
+    const popups = 
+    {
+        '111' : document.getElementById("111"),
+        '222' : document.getElementById("222"),
+        '333' : document.getElementById("333")
+    }
+    
+    let count = 0;
+    
+    function setResult(result) 
+    {
+        count = 20;
+        
+        for ( var i in popups )
+        {
+            if ( i == result )
+            {
+                popups[i].classList.add("selected");
+            }else
+            {
+                popups[i].classList.remove("selected");
+            }
+        }
+    }
+
+    // ####### Web Cam Scanning #######
+
+    QrScanner.hasCamera().then(hasCamera => 
+    {
+        const scanner = new QrScanner(video, result => setResult(result), error => 
+            {
+                count--;
+                if ( count < 0 )
+                {
+                    for ( var i in popups )
+                    {
+                        popups[i].classList.remove("selected");
+                    }
+                }
+            });
+        scanner.start().then(() => {
+            console.log("camera started");
+        });
+
+        // for debugging
+        window.scanner = scanner;
+    });
+
+    
+
+</script>
+</body>
+</html>
