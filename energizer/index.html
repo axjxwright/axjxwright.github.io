@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<title>AX Sequence Test</title>
+		<script type="module" src="app.js"></script>
+		<script type="text/javascript" src="webaudio-controls.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="css/style.css"></link>
+	</head>
+	<body>
+		Collider Energizer Sequencer Test | AX Interactive
+		<br/><br/>
+    	<div class="button-matrix">
+	</div>
+
+	<br/>
+	<table width="400" border="0">
+		<tr>
+			<td>Play</td>
+			<td>Volume</td>
+			<td>Bitcrush</td>
+			<td>Reverb</td>
+			<td>Tempo</td>
+		</tr>
+		<tr>
+			<td><webaudio-switch id="play-switch" src="../knobs/switch_toggle.png" width="64" height="64"></webaudio-switch>
+			<td><webaudio-knob id="volume-knob" src="../knobs/LittlePhatty.png" min="0" max="100" value="100"></webaudio-knob></td>
+			<td><webaudio-knob id="delay-knob" src="../knobs/LittlePhatty.png" min="0" max="100" value="100"></webaudio-knob></td>
+			<td><webaudio-knob id="reverb-knob" src="../knobs/LittlePhatty.png" min="0" max="100" value="100"></webaudio-knob></td>
+			<td><webaudio-knob id="tempo-knob" src="../knobs/LittlePhatty.png" min="10" max="100" value="100"></webaudio-knob></td>
+			
+		</tr>
+		<tr>
+			<td></webaudio-switch></td>
+			<td><webaudio-param link="volume-knob"></webaudio-param></td>
+			<td><webaudio-param link="delay-knob"></webaudio-param></td>
+			<td><webaudio-param link="reverb-knob"></webaudio-param></td>
+			<td><webaudio-param link="tempo-knob"></webaudio-param></td>
+			
+		</tr>
+	</table>
+	</body>
+
+	<script type="module">
+		import * as Tone from './tone.js'
+		import Application from "./app.js"
+
+		function tick()
+		{
+			kApp.tick();
+			requestAnimationFrame(tick);
+		}
+
+		window.addEventListener('DOMContentLoaded', (event) => 
+		{
+		    console.log('DOM fully loaded and parsed');
+		    window.kApp = new Application();
+		    tick();
+		    
+		});
+		
+	</script>
+
+</html>
