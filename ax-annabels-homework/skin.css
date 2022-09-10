@@ -1,0 +1,12 @@
+.logo {
+  background-image: url(ax-logo.png);
+}
+
+.splash {
+  background-image: url(ax-logo.png);
+}
+
+
+.background {
+  background: center no-repeat url(background.jpg);
+}
