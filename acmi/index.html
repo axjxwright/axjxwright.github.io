@@ -1,0 +1,131 @@
+<html>
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
+		<script>
+
+			function PulseCurve ( x, a, b )
+		    {
+		        var k = Math.pow ( a + b, a + b ) / ( Math.pow ( a, a ) * Math.pow ( b, b ) );
+		        return k * Math.pow ( x, a ) * Math.pow ( 1.0 - x, b );
+		    }
+
+		    function Lerp ( v0, v1, t ) 
+		    {
+    			return v0 * ( 1.0 - t ) + v1 * t;
+			}
+
+			var time = 0.0;
+			var data = { 
+						usePulse : true,
+						timeMultiplier : 1.0,
+						attack : 0.448,
+						decay : 1.368,
+						angleDegrees : 0.0,
+						distance : 15.0 }
+
+			var arrow = null;
+
+			var gui = null; 
+
+			function animate()
+			{
+				if ( !gui ) 
+				{
+					gui = new dat.GUI();
+					gui.add( data, "usePulse");
+					gui.add( data, "timeMultiplier", -3.0, 3.0, 0.1);
+					gui.add( data, "attack", 0.01, 6.0, 0.1);
+					gui.add( data, "decay", 0.01, 6.0, 0.1);
+					gui.add( data, "angleDegrees", 0, 360.0, 1);
+					gui.add( data, "distance", 0, 60.0, 0.1);
+				}
+
+				if ( !arrow ) arrow = document.getElementById("arrow");
+
+				time += (1.0 / 60.0) * data.timeMultiplier;
+
+				var t = 0.0;
+
+				if ( data.usePulse )
+				{
+					t = PulseCurve(time % 1.0, data.attack, data.decay);
+				}else
+				{
+					t = Math.sin(time * 5.0) * 0.5 + 0.5;
+				}
+
+				t = Lerp ( 0.0, data.distance, t );
+
+				var rad = data.angleDegrees * Math.PI / 180.0;
+
+				var ox = Math.cos(rad) * t;
+				var oy = Math.sin(rad) * t;
+
+
+				var rotate = "rotate(" + data.angleDegrees + "deg)";
+				arrow.style.transform = rotate;
+				
+				//var translate = "translate(100px, 10px);";
+				arrow.style.top = oy;
+				arrow.style.left = ox;
+
+				//console.log(arrow.style.transform);
+				//matrix.translateSelf(ox, oy);
+
+				//arrow.style.transform = matrix;
+
+				requestAnimationFrame(animate);
+			}
+
+		</script>
+	</head>
+
+	<style>
+
+		body
+		{
+			background-color: red;
+		}
+		.lens
+		{
+			background: url("./LensIcon.png");
+			background-size: 100% 100%;
+			position: absolute;
+			width: 206px;
+			height: 206px;
+		}
+
+		.arrow-wrapper
+		{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 45px;
+			height: 45px;
+		}
+
+		.arrow
+		{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			margin: -50% 0 0 -50%;
+			background: url("./LensArrow.png");
+			background-size: 100% 100%;
+		}
+
+	</style>
+	<body>
+
+		<div class="lens">
+
+			<div class="arrow-wrapper">
+				<div id="arrow" class="arrow">
+				</div>	
+			</div>
+		</div>
+
+		<script type="text/javascript">animate();</script>
+
+	</body>
+</html>
