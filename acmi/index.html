@@ -21,11 +21,51 @@
 						attack : 0.448,
 						decay : 1.368,
 						angleDegrees : 0.0,
-						distance : 15.0 }
+						distance : 15.0
+						 }
 
 			var arrow = null;
 
 			var gui = null; 
+			var ctx = null;
+
+			function GetT ( tt )
+			{
+				var t = 0;
+				if ( data.usePulse )
+				{
+					t = PulseCurve(tt % 1.0, data.attack, data.decay);
+				}else
+				{
+					t = Math.sin(tt * 5.0) * 0.5 + 0.5;
+				}
+
+				return t
+			}
+
+			function PlotGraph ( )
+			{
+				var sz = 300;
+
+				ctx.clearRect(0, 0, sz, sz );
+				ctx.beginPath();
+
+				for ( var t = 0.0; t <= 1.0; t += 0.001 )
+				{
+					var x = t * sz;
+					var y = GetT ( t ) * sz;
+
+					if ( t == 0.0 )
+					{
+						ctx.moveTo ( x, sz - y );
+					}else
+					{
+						ctx.lineTo ( x, sz - y );
+					}
+				}
+				
+				ctx.stroke(); 
+			}
 
 			function animate()
 			{
@@ -40,19 +80,19 @@
 					gui.add( data, "distance", 0, 60.0, 0.1);
 				}
 
+				if ( !ctx )
+				{
+					var c = document.getElementById("canvas");
+					ctx = c.getContext("2d");
+				}
+
+				PlotGraph ( );
+
 				if ( !arrow ) arrow = document.getElementById("arrow");
 
 				time += (1.0 / 60.0) * data.timeMultiplier;
 
-				var t = 0.0;
-
-				if ( data.usePulse )
-				{
-					t = PulseCurve(time % 1.0, data.attack, data.decay);
-				}else
-				{
-					t = Math.sin(time * 5.0) * 0.5 + 0.5;
-				}
+				var t = GetT( time );
 
 				t = Lerp ( 0.0, data.distance, t );
 
@@ -61,18 +101,11 @@
 				var ox = Math.cos(rad) * t;
 				var oy = Math.sin(rad) * t;
 
-
 				var rotate = "rotate(" + data.angleDegrees + "deg)";
 				arrow.style.transform = rotate;
 				
-				//var translate = "translate(100px, 10px);";
 				arrow.style.top = oy;
 				arrow.style.left = ox;
-
-				//console.log(arrow.style.transform);
-				//matrix.translateSelf(ox, oy);
-
-				//arrow.style.transform = matrix;
 
 				requestAnimationFrame(animate);
 			}
@@ -86,13 +119,21 @@
 		{
 			background-color: red;
 		}
-		.lens
+
+		.lens-wrapper
 		{
-			background: url("./LensIcon.png");
-			background-size: 100% 100%;
 			position: absolute;
 			width: 206px;
 			height: 206px;
+		}
+		.lens
+		{
+			position: relative;
+			background: url("./LensIcon.png");
+			background-size: 100% 100%;
+			
+			width: 100%;
+			height: 100%;
 		}
 
 		.arrow-wrapper
@@ -114,9 +155,19 @@
 			background-size: 100% 100%;
 		}
 
+		.canvas
+		{
+			margin-top: 32px;
+			position: relative;
+			width: 300px;
+			height: 300px;
+			border: 1px solid black;
+		}
+
 	</style>
 	<body>
 
+		<div class="lens-wrapper">
 		<div class="lens">
 
 			<div class="arrow-wrapper">
@@ -124,6 +175,12 @@
 				</div>	
 			</div>
 		</div>
+
+		<canvas id="canvas" class="canvas"></canvas>
+		
+	</div>
+
+		
 
 		<script type="text/javascript">animate();</script>
 
