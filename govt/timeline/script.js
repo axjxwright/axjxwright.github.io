@@ -33,7 +33,6 @@ function callbackFunc() {
   highest /= ratio;
   highest = Math.floor(highest);
 
-  console.log(highest);
 
   for (var i = 0; i < bgs.length; i++) {
     if (i == highest) {
