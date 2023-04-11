@@ -40,12 +40,17 @@
         type: "FeatureCollection",
         features: [],
       };
+      var found = {};
       var offset = 0;
       for (const decade in kData) {
         for (var i = 0; i < kData[decade].length; i++) {
           // Create a DOM element for each marker.
           var pl = kData[decade][i];
           if (isNaN(pl.lat) || isNaN(pl.lng)) continue;
+          console.log(pl.postcode);
+          if (pl.postcode in found) continue;
+          console.log(" adding");
+          found[pl.postcode] = true;
           var elem = {
             type: "Feature",
             properties: {
