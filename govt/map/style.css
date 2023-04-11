@@ -1,0 +1,129 @@
+body {
+  font-family: "Pathway Gothic One", sans-serif;
+}
+.marker {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+  cursor: pointer;
+}
+
+.cluster {
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+p {
+  max-width: 128px;
+  margin-bottom: -10px;
+  line-height: 14px;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+  font-family: "Pathway Gothic One", sans-serif;
+  font-size: 12px/20px;
+  color: white;
+}
+
+.mapboxgl-popup-content {
+  background-color: black;
+  max-width: 150px;
+  border-radius: 8px;
+}
+
+.mapboxgl-popup-tip {
+  border-top-color: black !important;
+  border-bottom-color: black !important;
+}
+
+.mapboxgl-popup-close-button {
+  color: white;
+}
+
+ul {
+  padding: 50px 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+ul li::after {
+  background: white;
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+ul li div {
+  position: relative;
+  width: 45vw;
+  min-width: 45vw;
+  padding: 15px;
+  border-radius: 5px;
+  bottom: 0;
+  font-size: 1vw;
+}
+
+.tl {
+  position: absolute;
+  width: 100vw;
+  min-width: 100vw;
+  overflow: hidden;
+}
+
+ul {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bolder {
+  font-weight: bold;
+}
+
+.faded {
+  opacity: 0.4;
+}
+
+time {
+  font-weight: bold;
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+time.large {
+  font-size: 4rem;
+}
+
+li div {
+  position: relative;
+
+  opacity: 1;
+  transition: all 0.6s cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+li.show div {
+  transform: none;
+  visibility: visible;
+  opacity: 1;
+}
+
+.preview-img {
+  padding-top: 8px;
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
+}
