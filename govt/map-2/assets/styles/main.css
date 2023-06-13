@@ -1,0 +1,161 @@
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./node_modules/sass-loader/dist/cjs.js!./src/styles/main.scss ***!
+  \*****************************************************************************************************************************************************************************************************************/
+html {
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 100%; }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; }
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  color: #3b3b3b; }
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 6px;
+  padding: 0; }
+
+* {
+  box-sizing: border-box; }
+
+body {
+  font-family: 'Roboto Condensed', sans-serif; }
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row; }
+
+#map {
+  flex: 1;
+  position: relative;
+  background-color: #222222; }
+  #map .controls {
+    margin: 8px;
+    position: absolute;
+    z-index: 100; }
+    #map .controls .button {
+      background-color: #ffffff;
+      border: 2px solid #e6e6e6;
+      height: auto;
+      text-align: center;
+      margin-bottom: -2px;
+      line-height: 0.5rem;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      outline: 0;
+      cursor: pointer; }
+      #map .controls .button span {
+        font-size: 1.2rem; }
+
+.sidebar {
+  position: relative;
+  width: 0px;
+  background-color: #5c6670;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden; }
+  .sidebar.expanded {
+    width: 30vw; }
+
+.marker {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+  cursor: pointer; }
+
+.cluster {
+  border-radius: 50%;
+  border: 2px solid white; }
+
+.search {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 8px; }
+  .search .search-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px; }
+    .search .search-content input {
+      width: 100%;
+      padding: 8px;
+      text-transform: uppercase; }
+    .search .search-content #search-list {
+      overflow-x: hidden;
+      overflow-y: auto;
+      flex: 1;
+      flex-shrink: 0; }
+      .search .search-content #search-list .search-result {
+        display: flex;
+        column-gap: 10px;
+        color: #848a90;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        outline: 0;
+        cursor: pointer;
+        padding-right: 8px;
+        margin-bottom: 10px; }
+        .search .search-content #search-list .search-result .image {
+          flex-grow: 0;
+          flex-shrink: 0;
+          width: 72px;
+          height: 72px;
+          background-position: center;
+          background-size: cover; }
+        .search .search-content #search-list .search-result .common_name {
+          color: white; }
+
+.info-content .image {
+  width: 30vw;
+  aspect-ratio: 1;
+  background-position: center;
+  background-size: cover; }
+
+.info-content .text-content {
+  padding: 12px; }
+
+.info-content .open_date {
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: black; }
+
+.info-content .common_name,
+.info-content .suburb,
+.info-content .designer {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #848a90; }
+
+.info-content .common_name {
+  color: white; }
+
